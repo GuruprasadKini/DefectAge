@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>File Upload and Process | COREFLEX</title>
+</head>
+<body>
+  <h1>COREFLEX</h1>
+  
+  <form id="uploadForm" action="/DefectAge/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" id="file" />
+    <br />
+    <br/>
+        <button onclick="submitForm()">Upload and Process</button>
+  </form>
+
+  <script>
+    function submitForm() {
+      var form = document.getElementById("uploadForm");
+      var formData = new FormData(form);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/upload", true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          // File upload and processing completed successfully
+          var response = xhr.responseText;
+          alert(response); // Display the response message to the user
+        }
+      };
+      xhr.send(formData);
+    }
+  </script>
+</body>
+</html>
